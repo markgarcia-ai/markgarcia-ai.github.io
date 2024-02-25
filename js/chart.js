@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to fetch and update chart based on selected stock
     function updateChart(stockSymbol, timeFrame) {
-        fetch(`../data/${stockSymbol}_data.csv`)
+        fetch('../data/${stockSymbol}_data.csv')
             .then(response => response.text())
             .then(data => {
                 const labels = [];
