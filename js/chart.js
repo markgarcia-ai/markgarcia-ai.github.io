@@ -1,10 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Get the dropdown element
     const selectElement = document.getElementById('stock-select');
+    const timeFrameSelect = document.getElementById('time-frame-select');
 
-    // Function to fetch and update chart based on selected stock
     function updateChart(stockSymbol, timeFrame) {
-        fetch('../data/${stockSymbol}_data.csv')
+        fetch('../data/${stockSymbol}_${timeFrame}_data.csv')
             .then(response => response.text())
             .then(data => {
                 const labels = [];
@@ -14,17 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const rows = data.split('\n').slice(1);
                 rows.forEach(row => {
                     const columns = row.split(',');
-                    // Assuming the date/time is in the first column
-                    const date = new Date(columns[0]);
-                    // Filter data based on the selected time frame
-                    const today = new Date();
-                    const startDate = new Date(today);
-                    startDate.setDate(today.getDate() - timeFrame); // Subtract time frame from today's date
-                    if (date >= startDate) {
-                        labels.push(columns[0]);
-                        prices.push(parseFloat(columns[4])); // Assuming the close price is in the fifth column
-                    }
+                    labels.push(columns[0]);
+                    prices.push(parseFloat(columns[4])); // Assuming the close price is in the fifth column
                 });
+
                 // Create chart
                 var ctx = document.getElementById('myChart').getContext('2d');
                 var myChart = new Chart(ctx, {
@@ -71,19 +63,26 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
-    // Event listener for dropdown change
     selectElement.addEventListener('change', function() {
         const selectedStock = selectElement.value;
-        // Clear previous chart
+        const selectedTimeFrame = timeFrameSelect.value;
         document.getElementById('myChart').remove();
         const canvas = document.createElement('canvas');
         canvas.id = 'myChart';
         document.querySelector('.container').appendChild(canvas);
-        // Update chart with selected stock
-        updateChart(selectedStock);
+        updateChart(selectedStock, selectedTimeFrame);
     });
 
-    // Initialize the dropdown with options
+    timeFrameSelect.addEventListener('change', function() {
+        const selectedStock = selectElement.value;
+        const selectedTimeFrame = timeFrameSelect.value;
+        document.getElementById('myChart').remove();
+        const canvas = document.createElement('canvas');
+        canvas.id = 'myChart';
+        document.querySelector('.container').appendChild(canvas);
+        updateChart(selectedStock, selectedTimeFrame);
+    });
+
     const stocks = ['AAPL', 'GOOGL', 'MSFT','NVDA']; // Example stock symbols
     stocks.forEach(stock => {
         const option = document.createElement('option');
@@ -92,6 +91,5 @@ document.addEventListener('DOMContentLoaded', function() {
         selectElement.appendChild(option);
     });
 
-    // Initially display chart for the first stock in the dropdown
-    updateChart(stocks[0]);
+    updateChart(stocks[0], '1m'); // Initially display chart for the first stock and 1 month time frame
 });
