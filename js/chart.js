@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to fetch and update chart based on selected stock
     function updateChart(stockSymbol) {
-        fetch('../data/${stockSymbol}_data.csv')
+        fetch(`../data/${stockSymbol}_data.csv`)
             .then(response => response.text())
             .then(data => {
                 const labels = [];
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Initialize the dropdown with options
-    const stocks = ['AAPL', 'GOOGL', 'MSFT','NVDIA']; // Example stock symbols
+    const stocks = ['AAPL', 'GOOGL', 'MSFT']; // Example stock symbols
     stocks.forEach(stock => {
         const option = document.createElement('option');
         option.value = stock;
