@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Get the dropdown element
     const selectElement = document.getElementById('stock-select');
-    const timeFrameSelect = document.getElementById('time-frame-select');
 
-    function updateChart(stockSymbol, timeFrame) {
-        fetch('../data/${stockSymbol}_${timeFrame}_data.csv')
+    // Function to fetch and update chart based on selected stock
+    function updateChart(stockSymbol) {
+        fetch('../data/${stockSymbol}_data.csv')
             .then(response => response.text())
             .then(data => {
                 const labels = [];
@@ -37,22 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
                                 ticks: {
                                     beginAtZero: false
                                 }
-                            }],
-                            xAxes: [{
-                                type: 'time',
-                                time: {
-                                    displayFormats: {
-                                        'millisecond': 'MMM DD',
-                                        'second': 'MMM DD',
-                                        'minute': 'MMM DD',
-                                        'hour': 'MMM DD',
-                                        'day': 'MMM DD',
-                                        'week': 'MMM DD',
-                                        'month': 'MMM DD',
-                                        'quarter': 'MMM DD',
-                                        'year': 'MMM DD',
-                                    }
-                                }
                             }]
                         }
                     }
@@ -63,27 +48,20 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
+    // Event listener for dropdown change
     selectElement.addEventListener('change', function() {
         const selectedStock = selectElement.value;
-        const selectedTimeFrame = timeFrameSelect.value;
+        // Clear previous chart
         document.getElementById('myChart').remove();
         const canvas = document.createElement('canvas');
         canvas.id = 'myChart';
         document.querySelector('.container').appendChild(canvas);
-        updateChart(selectedStock, selectedTimeFrame);
+        // Update chart with selected stock
+        updateChart(selectedStock);
     });
 
-    timeFrameSelect.addEventListener('change', function() {
-        const selectedStock = selectElement.value;
-        const selectedTimeFrame = timeFrameSelect.value;
-        document.getElementById('myChart').remove();
-        const canvas = document.createElement('canvas');
-        canvas.id = 'myChart';
-        document.querySelector('.container').appendChild(canvas);
-        updateChart(selectedStock, selectedTimeFrame);
-    });
-
-    const stocks = ['AAPL', 'GOOGL', 'MSFT','NVDA']; // Example stock symbols
+    // Initialize the dropdown with options
+    const stocks = ['AAPL', 'GOOGL', 'MSFT','NVDIA']; // Example stock symbols
     stocks.forEach(stock => {
         const option = document.createElement('option');
         option.value = stock;
@@ -91,5 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
         selectElement.appendChild(option);
     });
 
-    updateChart(stocks[0], '1m'); // Initially display chart for the first stock and 1 month time frame
+    // Initially display chart for the first stock in the dropdown
+    updateChart(stocks[0]);
 });

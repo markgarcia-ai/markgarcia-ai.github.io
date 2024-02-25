@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Data Visualization</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/style.css">    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -15,55 +15,10 @@
         <label for="stock-select">Select Stock:</label>
         <select id="stock-select"></select>
     </div>
-    <div>
-        <label for="time-frame-select">Select Time Frame:</label>
-        <select id="time-frame-select">
-            <option value="1m">1 Month</option>
-            <option value="3m">3 Months</option>
-            <option value="6m">6 Months</option>
-            <option value="1y">1 Year</option>
-        </select>
-    </div>
     <canvas id="myChart"></canvas>
 </div>
 
 <script src="js/chart.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const selectElement = document.getElementById('stock-select');
-        const timeFrameSelect = document.getElementById('time-frame-select');
-
-        // Function to fetch and update chart based on selected stock and time frame
-        function updateChart(stockSymbol, timeFrame) {
-            // Your updateChart function code here...
-        }
-
-        // Event listeners for dropdown changes
-        selectElement.addEventListener('change', function() {s
-            const selectedStock = selectElement.value;
-            const selectedTimeFrame = timeFrameSelect.value;
-            updateChart(selectedStock, selectedTimeFrame);
-        });
-
-        timeFrameSelect.addEventListener('change', function() {
-            const selectedStock = selectElement.value;
-            const selectedTimeFrame = timeFrameSelect.value;
-            updateChart(selectedStock, selectedTimeFrame);
-        });
-
-        // Code to populate dropdown options and initially display the chart
-        const stocks = ['AAPL', 'GOOGL', 'MSFT', 'NVDA']; // Example stock symbols
-        stocks.forEach(stock => {
-            const option = document.createElement('option');
-            option.value = stock;
-            option.textContent = stock;
-            selectElement.appendChild(option);
-        });
-
-        // Initially display chart for the first stock in the dropdown with a default time frame
-        updateChart(stocks[0], '1m');
-    });
-</script>
 
 </body>
 </html>
