@@ -9,18 +9,13 @@
 </head>
 <body>
 
-<header class="header">
-    <div class="container">
-        <h1 class="title">Stock Data Visualization</h1>
-    </div>
-</header>
-
 <div class="container">
-    <div class="select-container">
+    <h1>Stock Data Visualization</h1>
+    <div>
         <label for="stock-select">Select Stock:</label>
         <select id="stock-select"></select>
     </div>
-    <div class="select-container">
+    <div>
         <label for="time-frame-select">Select Time Frame:</label>
         <select id="time-frame-select">
             <option value="1m">1 Month</option>
@@ -31,18 +26,6 @@
     </div>
     <canvas id="myChart"></canvas>
 </div>
-
-<main class="features">
-    <div class="container">
-        <h2>Page Features</h2>
-        <ul>
-            <li>Real-time stock data visualization</li>
-            <li>Select from various time frames</li>
-            <li>Compare different stocks</li>
-            <!-- Add more features here -->
-        </ul>
-    </div>
-</main>
 
 <script src="js/chart.js"></script>
 <script>
