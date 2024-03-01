@@ -1,34 +1,11 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-}
-.container {
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-    padding: 50px 0;
-}
-h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-p {
-    font-size: 18px;
-    margin-bottom: 30px;
-}
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
+
+#stockSelect {
+    width: 100%;
+    max-width: 300px; /* Set a maximum width to prevent it from getting too wide */
+    padding: 10px;
+    font-size: 16px;
     border-radius: 5px;
-    font-size: 18px;
-    transition: background-color 0.3s ease;
-}
-.btn:hover {
-    background-color: #0056b3;
-}
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin: 0 auto; /* Center the dropdown horizontally */
+  }
