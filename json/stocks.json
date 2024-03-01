@@ -1,0 +1,20 @@
+{
+    "stocks": [
+      {
+        "symbol": "AAPL",
+        "name": "Apple Inc.",
+        "description": "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide."
+      },
+      {
+        "symbol": "GOOG",
+        "name": "Alphabet Inc.",
+        "description": "Alphabet Inc. is a multinational conglomerate that specializes in internet-related services and products."
+      },
+      {
+        "symbol": "MSFT",
+        "name": "Microsoft Corporation",
+        "description": "Microsoft Corporation develops, licenses, and supports software products, services, and devices worldwide."
+      }
+    ]
+  }
+  

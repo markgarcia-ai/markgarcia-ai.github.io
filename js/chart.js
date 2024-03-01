@@ -32,3 +32,23 @@ function fetchYahooCSV(symbol, callback) {
     Plotly.newPlot('plot', [{x: data.map(d => d.x), y: data.map(d => d.y), type: 'scatter', mode: 'lines'}], layout, config);
   }
   
+  document.addEventListener("DOMContentLoaded", function() {
+    fetch('stocks.json')
+      .then(response => response.json())
+      .then(data => {
+        const stocks = data.stocks;
+        const stockInfoDiv = document.getElementById('stockInfo');
+  
+        stocks.forEach(stock => {
+          const stockName = document.createElement('h2');
+          stockName.textContent = stock.name;
+          const description = document.createElement('p');
+          description.textContent = stock.description;
+  
+          stockInfoDiv.appendChild(stockName);
+          stockInfoDiv.appendChild(description);
+        });
+      })
+      .catch(error => console.error('Error:', error));
+  });
+  
