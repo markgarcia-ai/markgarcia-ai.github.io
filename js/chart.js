@@ -33,22 +33,27 @@ function fetchYahooCSV(symbol, callback) {
   }
   
   document.addEventListener("DOMContentLoaded", function() {
-    fetch('stocks.json')
-      .then(response => response.json())
-      .then(data => {
-        const stocks = data.stocks;
-        const stockInfoDiv = document.getElementById('stockInfo');
+    const stockSelect = document.getElementById('stockSelect');
+    const stockInfoDiv = document.getElementById('stockInfo');
   
-        stocks.forEach(stock => {
+    stockSelect.addEventListener('change', function() {
+      const selectedSymbol = this.value;
+      const jsonFileName = selectedSymbol + '.json';
+  
+      fetch(jsonFileName)
+        .then(response => response.json())
+        .then(data => {
+          stockInfoDiv.innerHTML = ''; // Clear previous stock info
+  
           const stockName = document.createElement('h2');
-          stockName.textContent = stock.name;
+          stockName.textContent = data.name;
           const description = document.createElement('p');
-          description.textContent = stock.description;
+          description.textContent = data.description;
   
           stockInfoDiv.appendChild(stockName);
           stockInfoDiv.appendChild(description);
-        });
-      })
-      .catch(error => console.error('Error:', error));
+        })
+        .catch(error => console.error('Error:', error));
+    });
   });
   
