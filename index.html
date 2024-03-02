@@ -15,12 +15,43 @@
 </head>
 <body>
 
-
-<!----HEADER SECTION START--------------------------------------------------------------------------------------------------> 
-<div class="header">
-  <h1>Stock Graph Viewer</h1>
+<!-- START Navigation -->
+<div class="container-fluid">    
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <a href="index.html" 
+       class="navbar-brand mb-0 h1">
+         <img class="d-inline-block align-top brandLogo" 
+              src="assets/images/logo-color.png"/>      
+    </a>
+    <button type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarNav"
+            class="navbar-toggler"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            > 
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div 
+         class="collapse navbar-collapse"
+         id="navbarNav">
+         <ul class="navbar-nav ms-auto">
+           <li class="nav-item active">
+             <a href="../views/community.html" class="nav-link">
+               Community
+             </a> 
+           </li>
+           <li class="nav-item">
+             <a href="../views/login.html" class="nav-link">
+               Your site
+             </a> 
+           </li>
+         </ul>
+    </div>
+  </nav>
 </div>
-
+<!-- END Navigation -->    
 <!----MAIN SECTION START--------------------------------------------------------------------------------------------------> 
 
 <!-- Include the dropdown menu -->
@@ -78,7 +109,7 @@
 </section>
 
 <!-- Include the JavaScript file -->
-<script src="js/chart.js"></script>
+<script src="js/chart_backup.js"></script>
 
 <script>
 document.getElementById("dropdown").addEventListener("load", function() {
