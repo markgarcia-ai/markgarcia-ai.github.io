@@ -866,15 +866,3 @@ header .navbar.navbar-expand-lg #navbarSupportedContent .nav-item {
   margin-bottom: 8px;
 }
 }
-
-
-#stockSelect {
-    width: 100%;
-    max-width: 300px; /* Set a maximum width to prevent it from getting too wide */
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    margin: 0 auto; /* Center the dropdown horizontally */
-  }
