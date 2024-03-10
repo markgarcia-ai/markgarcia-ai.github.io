@@ -1,5 +1,5 @@
 function fetchYahooCSV(symbol, callback) {
-    var file = "data/" + symbol + ".csv"; // Assuming the files are in a 'data' folder
+    var file = "csv_data/" + symbol + ".csv"; // Assuming the files are in a 'data' folder
     fetch(file)
       .then(response => response.text())
       .then(csv => {
