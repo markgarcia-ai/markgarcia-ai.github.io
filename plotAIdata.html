@@ -35,18 +35,39 @@
         nav a:hover {
             text-decoration: underline;
         }
-        section {
-            padding: 20px;
-            text-align: center;
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
         }
-        footer {
-            background-color: #333;
+        .navbar-brand {
+            font-size: 1.5em;
+        }
+        .navbar-links {
+            display: flex;
+            align-items: center;
+        }
+        .navbar-links a {
             color: #fff;
-            padding: 10px 0;
+            text-decoration: none;
+            padding: 0 10px;
+        }
+        .navbar-links a:hover {
+            text-decoration: underline;
+        }
+        .btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
             text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -55,9 +76,17 @@
         <h1>Welcome to My Website</h1>
     </header>
     <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
+        <div class="navbar">
+            <div class="navbar-brand">
+                <a href="#">My Website</a>
+            </div>
+            <div class="navbar-links">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="index.html" class="btn">Go to Index</a>
+            </div>
+        </div>
     </nav>
     <section>
         <h2>Welcome to My Website</h2>
