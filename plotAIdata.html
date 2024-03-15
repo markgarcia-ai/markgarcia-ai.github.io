@@ -1,99 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
-    <style>
-        /* You can add your CSS styles here */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        h1 {
-            margin: 0;
-        }
-        nav {
-            background-color: #444;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 0 10px;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-        .navbar-brand {
-            font-size: 1.5em;
-        }
-        .navbar-links {
-            display: flex;
-            align-items: center;
-        }
-        .navbar-links a {
-            color: #fff;
-            text-decoration: none;
-            padding: 0 10px;
-        }
-        .navbar-links a:hover {
-            text-decoration: underline;
-        }
-        .btn {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSV Table Viewer</title>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    th {
+        cursor: pointer;
+    }
+</style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Website</h1>
-    </header>
-    <nav>
-        <div class="navbar">
-            <div class="navbar-brand">
-                <a href="#">My Website</a>
-            </div>
-            <div class="navbar-links">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
-                <a href="index.html" class="btn">Go to Index</a>
-            </div>
-        </div>
-    </nav>
-    <section>
-        <h2>Welcome to My Website</h2>
-        <p>This is a basic HTML index page.</p>
-    </section>
-    <footer>
-        <p>&copy; 2024 My Website. All rights reserved.</p>
-    </footer>
+
+<h2>CSV Table Viewer</h2>
+
+<table id="csvTable">
+  <thead>
+    <tr></tr>
+  </thead>
+  <tbody>
+    
+  </tbody>
+</table>
+
+<script>
+  function readCSV(url) {
+    fetch(url)
+      .then(response => response.text())
+      .then(text => {
+        const rows = text.trim().split('\n').map(row => row.split(','));
+        const headers = rows.shift();
+
+        const tableHead = document.querySelector('#csvTable thead tr');
+        headers.forEach(header => {
+          const th = document.createElement('th');
+          th.textContent = header;
+          th.addEventListener('click', () => sortTable(headers.indexOf(header)));
+          tableHead.appendChild(th);
+        });
+
+        const tableBody = document.querySelector('#csvTable tbody');
+        rows.forEach(row => {
+          const tr = document.createElement('tr');
+          row.forEach(cell => {
+            const td = document.createElement('td');
+            td.textContent = cell;
+            tr.appendChild(td);
+          });
+          tableBody.appendChild(tr);
+        });
+      })
+      .catch(error => console.error('Error:', error));
+  }
+
+  function sortTable(columnIndex) {
+    const table = document.querySelector('#csvTable');
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+    rows.sort((a, b) => {
+      const aValue = a.cells[columnIndex].textContent;
+      const bValue = b.cells[columnIndex].textContent;
+      return aValue.localeCompare(bValue);
+    });
+
+    while (tbody.firstChild) {
+      tbody.removeChild(tbody.firstChild);
+    }
+
+    rows.forEach(row => {
+      tbody.appendChild(row);
+    });
+  }
+
+  readCSV('predictions/output.csv'); // Replace 'output.csv' with the path to your CSV file
+</script>
+
 </body>
 </html>
