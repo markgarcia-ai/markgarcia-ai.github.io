@@ -1,0 +1,45 @@
+{
+    "markets": [
+      {
+        "name": "NASDAQ",
+        "stocks": [
+          {
+            "symbol": "AAPL",
+            "name": "Apple Inc.",
+            "price": 150.25,
+            "change": "+1.50 (1.01%)"
+          },
+          {
+            "symbol": "GOOGL",
+            "name": "Alphabet Inc.",
+            "price": 2800.75,
+            "change": "-5.25 (-0.19%)"
+          },
+          {
+            "symbol": "MSFT",
+            "name": "Microsoft Corporation",
+            "price": 345.60,
+            "change": "+2.40 (0.70%)"
+          }
+        ]
+      },
+      {
+        "name": "NYSE",
+        "stocks": [
+          {
+            "symbol": "TSLA",
+            "name": "Tesla, Inc.",
+            "price": 750.30,
+            "change": "+10.25 (1.38%)"
+          },
+          {
+            "symbol": "AMZN",
+            "name": "Amazon.com, Inc.",
+            "price": 3400.50,
+            "change": "-20.75 (-0.61%)"
+          }
+        ]
+      }
+    ]
+  }
+  
